@@ -5,6 +5,7 @@
  */
 package rmiproject;
 
+
 /**
  *
  * @author 503
@@ -15,7 +16,9 @@ public class RmiProject {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        LoginFrm loginFrm = new LoginFrm();
+        ClientControl clientControl = new ClientControl();
+        LoginControl loginControl = new LoginControl(loginFrm, clientControl);
     }
     
 }

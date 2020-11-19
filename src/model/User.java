@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model;
+package rmiproject.model;
 
 /**
  *
@@ -11,9 +11,24 @@ package model;
  */
 public class User {
     private static final long serialVersionUID = 6529685098267757693L;
+    private int id;
     private String username;
     private String password;
 
+    public User(int id, String username, String password) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
     public User(String username, String password) {
         this.username = username;
         this.password = password;

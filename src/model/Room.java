@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model;
+package rmiproject.model;
 
 import java.io.Serializable;
 
@@ -15,6 +15,9 @@ public class Room implements Serializable{
     private static final long serialVersionUID = 6529685098267757692L;
     private int id;
     private String name;
+
+    public Room() {
+    }
     private int price;
     private String description;
 
@@ -56,4 +59,7 @@ public class Room implements Serializable{
         this.description = description;
     }
     
+    public Object[] toObjects(){
+        return new Object[]{name,price,description};
+    }
 }
