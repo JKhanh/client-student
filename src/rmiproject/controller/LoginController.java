@@ -18,6 +18,11 @@ public class LoginController extends UnicastRemoteObject implements LoginInterfa
 
     public LoginController() throws RemoteException {
         getDBConnection("tblroom", "root", "phong611");
+        System.setProperty("java.security.policy","file:///tmp/test.policy");
+
+        if (System.getSecurityManager() == null) {
+            System.setSecurityManager(new SecurityManager());
+        }
         try{
             registry = LocateRegistry.createRegistry(serverPort);
             registry.rebind(rmiService, this);
@@ -29,11 +34,13 @@ public class LoginController extends UnicastRemoteObject implements LoginInterfa
 
     @Override
     public boolean checkLogin(User user) throws RemoteException {
+        System.out.println(user.toString() + " login");
         return checkUser(user);
     }
 
     @Override
     public boolean addRoom(Room room) throws RemoteException {
+        System.out.println(room.toString() + " adding");
         String query = "INSERT INTO room (name, price, description) VALUES (?, ?, ?)";
         try{
             PreparedStatement ps = con.prepareStatement(query);
@@ -50,6 +57,7 @@ public class LoginController extends UnicastRemoteObject implements LoginInterfa
 
     @Override
     public ArrayList<Room> searchRoom(String name) throws RemoteException, SQLException {
+        System.out.println("Get list room");
         ArrayList<Room> result = new ArrayList<>();
         String query = "SELECT * FROM room WHERE name LIKE ?";
         PreparedStatement ps = con.prepareStatement(query);
